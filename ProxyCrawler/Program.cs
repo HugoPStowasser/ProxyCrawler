@@ -26,11 +26,10 @@ namespace ProxyCrawler
         static async Task Main(string[] args)
         {
             var options = new ChromeOptions();
-            //options.AddArgument("--headless"); // Executar o navegador em modo headless (sem GUI)
+            options.AddArgument("--headless");
             using var driver = new ChromeDriver(options);
             driver.Navigate().GoToUrl("https://pt-br.proxyscrape.com/lista-de-procuradores-gratuitos");
 
-            // Aguarde a tabela ser carregada (você pode ajustar conforme a estrutura da página)
             var proxyRows = driver.FindElements(By.CssSelector("table tbody tr"));
 
             var proxies = new List<Proxy>();
